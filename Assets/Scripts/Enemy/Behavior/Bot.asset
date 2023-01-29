@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: Bot
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(976.0397,-339.655457)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-3.96032715,120.344543)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3.27038574,144.052765)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-1543.06116,167.984329)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CurentMovingZoneIsFinishZone","NodeData":{"Offset":"(-131.052673,123.684181)"},"ID":4,"Name":"Curent
+        Moving Zone Is Finish Zone","Instant":true},{"Type":"WinState","NodeData":{"Offset":"(115.464111,139.071091)"},"ID":5,"Name":"Win
+        State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-319.305542,218.262756)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsLevelWithBridges","NodeData":{"Offset":"(-235.000092,135.000031)"},"ID":7,"Name":"Is
+        Level With Bridges","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-56.0225525,177.713135)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(-225.13031,128.871552)"},"ID":9,"Name":"Return
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(5.624999,124.375)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsSmallSnowball","NodeData":{"Offset":"(-123.95993,134.630066)"},"ID":11,"Name":"Is
+        Small Snowball","Instant":true},{"Type":"MoveOnPoints","NodeData":{"Offset":"(97.07526,134.3248)"},"ID":12,"Name":"Move
+        On Points","Instant":true,"Int32_countPoints":0,"Vector3[]_points":[],"Int32_currentPoint":0,"Single_currentDistanceTotargetPoint":0}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(84.9436,206.216492)"},"ID":13,"Name":"Return
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(5.00000954,109.999985)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTowardsBridge","NodeData":{"Offset":"(-85.75745,215.151489)"},"ID":15,"Name":"Move
+        Towards Bridge","Instant":true,"SharedFloat_speedRotation":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloat_speedMoving":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"Single_currentDistance":0},{"Type":"MoveToEndPointOnBridge","NodeData":{"Offset":"(134.2424,220.30304)"},"ID":16,"Name":"Move
+        To End Point On Bridge","Instant":true,"Single_speedRotation":900,"Single_speedMoving":3.5,"Single_currentDistance":0,"Single_previousSpeed":0},{"Type":"MoveToEnterPointNextMovingZone","NodeData":{"Offset":"(384.545532,220.302979)"},"ID":17,"Name":"Move
+        To Enter Point Next Moving Zone","Instant":true,"Single_currentDistance":0},{"Type":"SetNewLevel","NodeData":{"Offset":"(575.1515,222.954559)"},"ID":18,"Name":"Set
+        New Level","Instant":true}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(129.1664,221.90271)"},"ID":19,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToCurrentExitPoint","NodeData":{"Offset":"(-180.499268,152.064758)"},"ID":20,"Name":"Move
+        To Current Exit Point","Instant":true,"Single_currentDistanceTotargetPoint":0},{"Type":"WaitUntilTransitOnNextLevelIsOver","NodeData":{"Offset":"(46.42886,162.900055)"},"ID":21,"Name":"Wait
+        Until Transit On Next Level Is Over","Instant":true},{"Type":"MoveToEnterPointNextMovingZone","NodeData":{"Offset":"(504.548431,151.302155)"},"ID":22,"Name":"Move
+        To Enter Point Next Moving Zone","Instant":true,"Single_currentDistance":0},{"Type":"SetNewLevel","NodeData":{"Offset":"(688.3877,146.464371)"},"ID":23,"Name":"Set
+        New Level","Instant":true}]}]}]}}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.2

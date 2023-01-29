@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5811881aac64ab0478f492aa8a151ddc, type: 3}
+  m_Name: cool skins
+  m_EditorClassIdentifier: 
+  _skinTemplates:
+  - {fileID: 8339416229374699577, guid: 69a894691d970f74a9a02495f78e3b26, type: 3}
+  - {fileID: -452210188580336304, guid: 3648c569cd5fb7d4b87a669e46fa8203, type: 3}
+  - {fileID: 3404673098316734370, guid: 2e233622fc23c2242be38748acdd3708, type: 3}
+  - {fileID: 7348091209654986282, guid: 428782fa9976e3f42bce5c4166fe778c, type: 3}
