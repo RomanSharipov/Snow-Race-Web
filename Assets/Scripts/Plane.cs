@@ -23,7 +23,7 @@ public class Plane : MonoBehaviour
         if (other.TryGetComponent(out Snowball snowball))
         {
             snowball.SwitchOffSnowTrail();
-            snowball.TrySetZeroMode();
+            snowball.SnowballScaler.TrySetZeroMode();
         }
 
         if (other.TryGetComponent(out Stickman stickman))

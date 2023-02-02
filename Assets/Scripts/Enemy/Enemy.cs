@@ -210,13 +210,13 @@ public class Enemy : Stickman
 
     public override void OnEnterOnPlane()
     {
-        Snowball.SetRollMode();
+        Snowball.SnowballScaler.SetScallingUpMode();
     }
 
     public override void OnExitFromPlane()
     {
         Snowball.SwitchOffSnowTrail();
-        Snowball.TrySetZeroMode();
+        Snowball.SnowballScaler.TrySetZeroMode();
     }
 
     public void SetNextExitPoint()

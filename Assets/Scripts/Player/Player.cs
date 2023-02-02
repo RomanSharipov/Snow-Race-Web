@@ -252,12 +252,12 @@ public class Player : Stickman
     public override void OnEnterOnPlane()
     {
         SetInputOnPlane();
-        Snowball.SetRollMode();
+        Snowball.SnowballScaler.SetScallingUpMode();
     }
 
     public override void OnExitFromPlane()
     {
-        Snowball.TrySetZeroMode();
+        Snowball.SnowballScaler.TrySetZeroMode();
     }
 
 

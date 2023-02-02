@@ -36,6 +36,7 @@ public class Snowball : MonoBehaviour
     public GameObject StickmanPosition => _stickmanPosition;
     public SnowballCollisionAttackHandler SnowballCollisionAttackHandler => _snowballCollisionAttackHandler;
     public Transform StickmanPositionMax => _stickmanPositionMax;
+    public SnowballScaler SnowballScaler => _snowballScaler;
 
     public event UnityAction Stoped; 
     
@@ -50,7 +51,7 @@ public class Snowball : MonoBehaviour
         _snowballScaler = new SnowballScaler(_snowballScalingMesh, _stickmanPositionMax);
         _snowballScaler.SnowballScalingUpToLittleStage += SwitchOnSnowTrail;
         _snowballScaler.SnowballBecomesZero += OnSnowballBecomesZero;
-        SetRollMode();
+        SnowballScaler.SetScallingUpMode();
         SwitchOffSnowTrail();
     }
 
@@ -58,7 +59,7 @@ public class Snowball : MonoBehaviour
     {
         _splineFollower.spline = splineComputer;
         _splineFollower.follow = true;
-        SetUnRollModeForFinishLine();
+        SnowballScaler.SetUnRollModeForFinishLine();
         StartCoroutine(Rolling());
     }
 
@@ -83,32 +84,6 @@ public class Snowball : MonoBehaviour
         _snowballScaler.ChangeScale();
     }
 
-    public void SetRollMode()
-    {
-        _snowballScaler.SetScallingUpMode();
-    }
-
-    public void SetUnRollMode()
-    {
-        
-        _snowballScaler.SetScallingDownMode();
-    }
-
-    public void SetZeroMode()
-    {
-        _snowballScaler.SetZeroMode();
-    }
-
-    public void TrySetZeroMode()
-    {
-        _snowballScaler.TrySetZeroMode();
-    }
-
-    public void SetUnRollModeForFinishLine()
-    {
-        _snowballScaler.SetUnRollModeForFinishLine();
-    }
-    
     public void SwitchOffSnowTrail()
     {
         _snowTrail.SwithOffTrail();

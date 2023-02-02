@@ -61,7 +61,7 @@ public class StopperStickman : MonoBehaviour
         {
             _snowball = snowball;
             StopMove();
-            _snowball.SetZeroMode();
+            _snowball.SnowballScaler.SetZeroMode();
             _snowball.SnowballBecomesZero -= StartMove;
         }
     }
@@ -78,7 +78,7 @@ public class StopperStickman : MonoBehaviour
             _snowball = snowball;
             StartMove();
             _snowball.SnowballBecomesZero += StopMove;
-            _snowball.SetUnRollMode();
+            _snowball.SnowballScaler.SetScallingDownMode();
         }
 
         if (other.TryGetComponent(out Stickman stickman))
