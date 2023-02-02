@@ -47,8 +47,8 @@ public abstract class Stickman : MonoBehaviour
 
     protected void Start()
     {
-        _snowball.Init();
         _skeletPositionBeforeWalkingOnSnowball = _skelet.transform.position;
+        _snowball.Init();
     }
 
     public abstract void OnEnterOnBridge();

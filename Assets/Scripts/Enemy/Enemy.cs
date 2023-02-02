@@ -62,13 +62,14 @@ public class Enemy : Stickman
     {
         base.Start();
         _enemyMovement = new EnemyMovement();
-        _enemyMovement.Walked += OnWalked;
         _enemyMovement.Init(transform,this);
+        _enemyMovement.Walked += OnWalked;
         _indexCurrentMovingZone = 0;
         _waitForSeconds = new WaitForSeconds(_delayOnTakeDamage);
         _collider = GetComponent<Collider>();
         _currentExitPointFromCurrentLevel = _exitPointsFromCurrentLevel[_indexCurrentExitPoint];
         _currentMovingZone = _enemyMovingZones[_indexCurrentMovingZone];
+        Debug.Log("_currentMovingZone");
         _currentPointEnterToNextLevel = _pointsEnterToNextLevel[_indexCurrentPointEnterToNextLevel];
         _transitOnNextLevelIsOver = false;
     }

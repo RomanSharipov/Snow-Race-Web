@@ -14,17 +14,10 @@ public class Snowball : MonoBehaviour
     [SerializeField] private SplineFollower _splineFollower;
     [SerializeField] private GameObject _stickmanPosition;
 
-    [Header("Scaling object(Child)")]
-    [SerializeField] private float _scaleUpSpeed;
-    [SerializeField] private float _scaleDownSpeed;
-    [SerializeField] private float _scaleDownSpeedForFinish;
+    [Header("Snowball Scaler")]
+    [SerializeField] private SnowballScaler _snowballScaler;
     [SerializeField] private GameObject _snowballScalingMesh;
     [SerializeField] private Transform _stickmanPositionMax;
-   
-
-    [Header("Size snowball settings")]
-    [SerializeField] private float _maxSize;
-    [SerializeField] private float _minSize;
 
     [SerializeField] private SnowballCollisionAttackHandler _snowballCollisionAttackHandler;
     [SerializeField] private SnowTrail _snowTrail;
@@ -33,19 +26,13 @@ public class Snowball : MonoBehaviour
     private SnowballRotation _snowballRotation;
     private bool _onPlane;
 
-    private ISnowballScalable _snowballCurrentScalingMode;
-    private SnowballScalingUp _snowballScalingUp;
-    private SnowballScalingDown _snowballScalingDown;
-    private SnowballScalingDown _snowballScalingDownForFinish;
-    private SnowballScalingZero _snowballScalingZero;
-
     public event Action WasScaledDownSmallSize;
     public event Action SnowballBecomesZero;
     public event Action WasScaledUpMiddleSize;
     public event Action WasScaledDownMiddleSize;
 
-    public float Scale => _snowballScalingMesh.transform.localScale.x;
-    public float NormalizedScale => Scale / _maxSize;
+    public float Scale => _snowballScaler.Scale;
+    public float NormalizedScale => _snowballScaler.NormalizedScale;
     public GameObject StickmanPosition => _stickmanPosition;
     public SnowballCollisionAttackHandler SnowballCollisionAttackHandler => _snowballCollisionAttackHandler;
     public Transform StickmanPositionMax => _stickmanPositionMax;
@@ -60,14 +47,9 @@ public class Snowball : MonoBehaviour
     public void Init()
     {
         _snowballRotation = new SnowballRotation(_snowballMesh.transform, _rotateSpeed);
-        _snowballScalingUp = new SnowballScalingUp(_maxSize, _snowballScalingMesh.transform, _scaleUpSpeed);
-        _snowballScalingUp.WasScaledUpSmallSize += LittleStage;
-        _snowballScalingDown = new SnowballScalingDown(_minSize, _snowballScalingMesh.transform, _scaleDownSpeed);
-        _snowballScalingDownForFinish = new SnowballScalingDown(_minSize, _snowballScalingMesh.transform, _scaleDownSpeedForFinish);
-        _snowballScalingDown.SnowballBecomesZero += OnSnowballBecomesZero;
-        _snowballScalingZero = new SnowballScalingZero();
-        _snowballCurrentScalingMode = _snowballScalingUp;
-        _snowballScalingDown.WasScaledDownZeroSizelSize += OnScaledDownSmallSize;
+        _snowballScaler = new SnowballScaler(_snowballScalingMesh, _stickmanPositionMax);
+        _snowballScaler.SnowballScalingUpToLittleStage += SwitchOnSnowTrail;
+        _snowballScaler.SnowballBecomesZero += OnSnowballBecomesZero;
         SetRollMode();
         SwitchOffSnowTrail();
     }
@@ -76,7 +58,7 @@ public class Snowball : MonoBehaviour
     {
         _splineFollower.spline = splineComputer;
         _splineFollower.follow = true;
-        SetUnRollModeForFinish();
+        SetUnRollModeForFinishLine();
         StartCoroutine(Rolling());
     }
 
@@ -84,7 +66,7 @@ public class Snowball : MonoBehaviour
     {
         SwitchOffSnowTrail();
         
-        while (_snowballScalingMesh.transform.localScale.x>_minSize)
+        while (_snowballScaler.SnowballGreaterSmallSize)
         {
             Roll();
             yield return null;
@@ -98,37 +80,33 @@ public class Snowball : MonoBehaviour
     {
         _snowParticle.Play();
         _snowballRotation.Rotate();
-        _snowballCurrentScalingMode.ChangeScale();
+        _snowballScaler.ChangeScale();
     }
 
     public void SetRollMode()
     {
-        _snowballScalingUp.SetStartStages();
-        _snowballCurrentScalingMode = _snowballScalingUp;
+        _snowballScaler.SetScallingUpMode();
     }
 
     public void SetUnRollMode()
     {
-        _snowballScalingDown.SetStartStages();
-        _snowballCurrentScalingMode = _snowballScalingDown;
+        
+        _snowballScaler.SetScallingDownMode();
     }
 
     public void SetZeroMode()
     {
-        _snowballCurrentScalingMode = _snowballScalingZero;
+        _snowballScaler.SetZeroMode();
     }
 
     public void TrySetZeroMode()
     {
-        if (_snowballCurrentScalingMode == _snowballScalingDown)
-            return;
-
-        SetZeroMode();
+        _snowballScaler.TrySetZeroMode();
     }
 
-    public void SetUnRollModeForFinish()
+    public void SetUnRollModeForFinishLine()
     {
-        _snowballCurrentScalingMode = _snowballScalingDownForFinish;
+        _snowballScaler.SetUnRollModeForFinishLine();
     }
     
     public void SwitchOffSnowTrail()
@@ -143,24 +121,16 @@ public class Snowball : MonoBehaviour
 
     private void LittleStage()
     {
-        if (_onPlane)
-        {
-            SwitchOnSnowTrail();
-        }
+        SwitchOnSnowTrail();
     }
 
     private void OnDisable()
     {
-        _snowballScalingUp.WasScaledUpSmallSize -= LittleStage;
-        _snowballScalingDown.SnowballBecomesZero -= OnSnowballBecomesZero;
-        _snowballScalingDown.WasScaledDownZeroSizelSize += OnScaledDownSmallSize;
+        _snowballScaler.UnSubscribeEvents();
+        _snowballScaler.SnowballScalingUpToLittleStage -= SwitchOnSnowTrail;
+        _snowballScaler.SnowballBecomesZero -= OnSnowballBecomesZero;
     }
 
-    private void OnScaledDownSmallSize()
-    {
-        WasScaledDownSmallSize?.Invoke();
-    }
-    
     private void OnSnowballBecomesZero()
     {
         SwitchOffSnowTrail();
@@ -169,14 +139,13 @@ public class Snowball : MonoBehaviour
 
     public void SetZeroScale()
     {
-        _snowballScalingMesh.transform.localScale = Vector3.zero;
-        _snowballScalingUp.SetStartStages();
+        _snowballScaler.SetZeroScale();
         SwitchOffSnowTrail();
     }
 
     public void SetMaxSize()
     {
-        _snowballScalingMesh.transform.localScale = new Vector3(_maxSize, _maxSize, _maxSize);
+        _snowballScaler.SetMaxSize();
         SwitchOnSnowTrail();
     }
 

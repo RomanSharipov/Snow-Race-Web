@@ -426,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 7586119053496055188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.979, z: -0.638}
-  m_LocalScale: {x: 3.22, y: 3.22, z: 3.22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7586119054041177201}
@@ -524,13 +524,14 @@ MonoBehaviour:
   _snowballMesh: {fileID: 7586119054041177200}
   _splineFollower: {fileID: 316372713134598140}
   _stickmanPosition: {fileID: 0}
-  _scaleUpSpeed: 1
-  _scaleDownSpeed: 5
-  _scaleDownSpeedForFinish: 1.5
+  _snowballScaler:
+    _scaleUpSpeed: 1
+    _scaleDownSpeed: 5
+    _scaleDownSpeedForFinish: 1.5
+    _maxSize: 5
+    _minSize: 1
   _snowballScalingMesh: {fileID: 7586119053496055188}
   _stickmanPositionMax: {fileID: 9110128126357496931}
-  _maxSize: 6
-  _minSize: 1
   _snowballCollisionAttackHandler: {fileID: 3666187332013150552}
   _snowTrail: {fileID: 5996278775910580740}
   _snowParticle: {fileID: 3630910145814325013}

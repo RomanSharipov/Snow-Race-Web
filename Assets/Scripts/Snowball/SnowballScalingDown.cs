@@ -37,8 +37,6 @@ public class SnowballScalingDown : ISnowballScalable
             WasScaledDownZeroSizelSize?.Invoke();
             return;
         }
-            
-        
 
         if (_transform.localScale.x < _minSize && _isAlreadySnowballBecomesZero == false)
         {
