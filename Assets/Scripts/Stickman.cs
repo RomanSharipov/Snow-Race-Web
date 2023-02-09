@@ -21,7 +21,7 @@ public abstract class Stickman : MonoBehaviour
     private bool _onWaterBridge;
     private const int JumpPower = 3;
     private const int JumpDuration=1;
-    private Vector3 _skeletPositionBeforeWalkingOnSnowball=new Vector3(0,0,0);
+    private Vector3 _skeletStartPosition  = new Vector3(0,0.3f,0);
     private Platform _platform;
 
     private Coroutine _stayOnSnowballJob;
@@ -47,7 +47,7 @@ public abstract class Stickman : MonoBehaviour
 
     protected void Start()
     {
-        _skeletPositionBeforeWalkingOnSnowball = _skelet.transform.position;
+        _skeletStartPosition = _skelet.transform.localPosition;
         _snowball.Init();
     }
 
@@ -152,7 +152,7 @@ public abstract class Stickman : MonoBehaviour
     public void OnExitOnWaterBridge()
     {
         ExitOnWaterColdier?.Invoke();
-        _skelet.transform.localPosition = Vector3.zero;
+        _skelet.transform.localPosition = _skeletStartPosition;
     }
 
     public void JumpOffTheBall()
@@ -163,7 +163,7 @@ public abstract class Stickman : MonoBehaviour
         }
         _stayOnSnowballJob = null;
 
-        _skins.localPosition = Vector3.zero;
+        _skins.localPosition = _skeletStartPosition;
     }
 
     private void Folow()
@@ -202,7 +202,7 @@ public abstract class Stickman : MonoBehaviour
 
     public void ResetSkeletonPositions()
     {
-        _skelet.transform.localPosition = Vector3.zero;
+        _skelet.transform.localPosition = _skeletStartPosition;
     }
 
     private void OnDisable()
