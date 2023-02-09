@@ -21,19 +21,18 @@ public class EnemyMovement
     public void Move()
     {
         Walked?.Invoke();
-        _enemy.Snowball.Roll();
     }
 
-    public void MoveTo(Vector3 _target, float speed, float rotationSpeed)
-    {
-        Walked?.Invoke();
-        Vector3 positionDifference = _target - _transform.position;
+    //public void MoveTo(Vector3 _target, float speed, float rotationSpeed)
+    //{
+    //    Walked?.Invoke();
+    //    Vector3 positionDifference = _target - _transform.position;
 
-        Vector3 _direction = Vector3.Normalize(positionDifference);
-        _targetRotation = Quaternion.LookRotation(_direction);
-        Quaternion lookAtRotationOnly_Y = Quaternion.Euler(_transform.rotation.eulerAngles.x, _targetRotation.eulerAngles.y, _transform.rotation.eulerAngles.z);
-        _transform.rotation = Quaternion.Lerp(_transform.rotation, lookAtRotationOnly_Y, rotationSpeed * Time.deltaTime);
-        _transform.position = Vector3.MoveTowards(_transform.position, _target, speed * Time.deltaTime);
-        _enemy.Snowball.Roll();
-    }
+    //    Vector3 _direction = Vector3.Normalize(positionDifference);
+    //    _targetRotation = Quaternion.LookRotation(_direction);
+    //    Quaternion lookAtRotationOnly_Y = Quaternion.Euler(_transform.rotation.eulerAngles.x, _targetRotation.eulerAngles.y, _transform.rotation.eulerAngles.z);
+    //    _transform.rotation = Quaternion.Lerp(_transform.rotation, lookAtRotationOnly_Y, rotationSpeed * Time.deltaTime);
+    //    _transform.position = Vector3.MoveTowards(_transform.position, _target, speed * Time.deltaTime);
+    //    _enemy.Snowball.Roll();
+    //}
 }

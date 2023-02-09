@@ -114,6 +114,7 @@ public class Enemy : Stickman
     private void OnWalked()
     {
         Walked?.Invoke(Snowball.NormalizedScale);
+        Snowball.Roll();
     }
 
     public override void OnTakeDamage()
@@ -228,4 +229,5 @@ public class Enemy : Stickman
         _indexCurrentExitPoint++;
         _currentExitPointFromCurrentLevel = _exitPointsFromCurrentLevel[_indexCurrentExitPoint];
     }
+
 }
